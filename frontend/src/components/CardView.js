@@ -13,7 +13,6 @@ const CardView = ({ module }) => {
 
   useEffect(() => {
     const CalculateDaysLeft = () => {
-
       const oneDay = 24 * 60 * 60 * 1000; // hours*minutes*seconds*milliseconds
 
       const examDate = new Date(module.date);
@@ -57,7 +56,7 @@ const CardView = ({ module }) => {
               Time: <p style={{ fontWeight: "bold" }}>{module.time}</p>
             </ListGroup.Item>
             <ListGroup.Item>
-              Exam lenght:{" "}
+              Exam length:{" "}
               <p style={{ fontWeight: "bold" }}>{module.examlenght}</p>
             </ListGroup.Item>
             <ListGroup.Item style={{ textAlign: "center" }}>
