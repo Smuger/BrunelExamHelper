@@ -6,7 +6,6 @@ import asyncHandler from "express-async-handler";
 // @access Public
 const getModules = asyncHandler(async (req, res) => {
   const modules = await Module.find({});
-  res.set("Cache-control", "public, max-age=300");
   res.json(modules);
 });
 
@@ -14,9 +13,9 @@ const getModules = asyncHandler(async (req, res) => {
 // @route GET /api/modules/id
 // @access Public
 const getModuleById = asyncHandler(async (req, res) => {
+
   const module = await Module.findById(req.params.id);
   if (module) {
-    res.set("Cache-control", "public, max-age=300");
     res.json(module);
   } else {
     res.status(404);
@@ -46,8 +45,33 @@ const postNewNote = asyncHandler(async (req, res) => {
       console.error("Module failed while saving: " + error);
     }
 
-    res.set("Cache-control", "public, max-age=300");
     res.status(201).json({ message: "Module added" });
+  } else {
+    res.status(404);
+    throw new Error("Module not found");
+  }
+});
+
+// @desc    Create new review
+// @route   POST /api/modules/:id/notes/update
+// @access  Private
+const postNoteUpdate = asyncHandler(async (req, res) => {
+  const { isDone, noteId } = req.body;
+
+  const module = await Module.findById(req.params.id);
+
+  // Check is service was found
+  if (module) {
+    const noteIndex = module.notes.findIndex((note) => note._id == noteId);
+    module.notes[noteIndex].done = isDone;
+
+    try {
+      await module.save();
+    } catch (error) {
+      console.error("Module failed while saving: " + error);
+    }
+
+    res.status(201).json({ message: "Module updated" });
   } else {
     res.status(404);
     throw new Error("Module not found");
@@ -71,7 +95,7 @@ const createModule = asyncHandler(async (req, res) => {
 
   try {
     await module.save();
-    res.set("Cache-control", "public, max-age=300");
+
     res.status(201).json({ message: "Module added" });
   } catch (error) {
     console.error("Creating module thrown following error: " + error);
@@ -80,4 +104,4 @@ const createModule = asyncHandler(async (req, res) => {
   }
 });
 
-export { getModules, getModuleById, createModule, postNewNote };
+export { getModules, getModuleById, createModule, postNewNote, postNoteUpdate };

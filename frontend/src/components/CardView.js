@@ -3,9 +3,11 @@ import { Card, ListGroup, ProgressBar, Spinner } from "react-bootstrap";
 
 const CardView = ({ module }) => {
   const [daysLeft, setDaysLeft] = useState();
+  const [noteDone, setNoteDone] = useState();
+  const [numberOfNotes, setNumberOfNotes] = useState();
 
   useEffect(() => {
-    const CalculateDaysLeft = () => {
+    (() => {
       const oneDay = 24 * 60 * 60 * 1000; // hours*minutes*seconds*milliseconds
 
       const examDate = new Date(module.date);
@@ -14,8 +16,14 @@ const CardView = ({ module }) => {
       const diffDays = Math.round(Math.abs((examDate - currentDate) / oneDay));
 
       setDaysLeft(diffDays);
-    };
-    CalculateDaysLeft();
+    })();
+
+    setNoteDone(
+      module.notes.filter((note) => {
+        return note.done === true;
+      }).length
+    );
+    setNumberOfNotes(module.notes.length);
   }, [module]);
 
   const day = [
@@ -56,6 +64,28 @@ const CardView = ({ module }) => {
               Days left: <ProgressBar animated now={100 - daysLeft} />
               {daysLeft ? (
                 <p style={{ fontWeight: "bold" }}>{daysLeft}</p>
+              ) : (
+                <Spinner
+                  animation="border"
+                  style={{
+                    margin: "auto",
+                    display: "flex",
+                    width: "1rem",
+                    height: "1rem",
+                  }}
+                />
+              )}
+            </ListGroup.Item>
+            <ListGroup.Item style={{ textAlign: "center" }}>
+              Topics to revise left:{" "}
+              <ProgressBar
+                variant="success"
+                animated
+                now={noteDone}
+                max={numberOfNotes}
+              />
+              {daysLeft ? (
+                <p style={{ fontWeight: "bold" }}>{numberOfNotes - noteDone}</p>
               ) : (
                 <Spinner
                   animation="border"

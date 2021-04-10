@@ -5,6 +5,7 @@ const noteSchema = mongoose.Schema(
     topic: { type: String, required: true },
     url: { type: String },
     embedded: { type: String },
+    done: { type: Boolean },
   },
   {
     timestamps: true,

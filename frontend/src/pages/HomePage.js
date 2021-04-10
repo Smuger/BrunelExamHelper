@@ -12,19 +12,28 @@ const HomePage = () => {
   const [connectionError, setConnectionError] = useState(false);
 
   // Run on load
-  useEffect(() => {
-    (async () => {
-      try {
-        await axios.get(`/api/modules`).then(({ data }) => setModules(data));
-      } catch (err) {
-        setConnectionError(true);
-      }
-    })();
-  }, []);
+  // useEffect(() => {
+  //   (async () => {
+  //     try {
+  //       await axios.get(`/api/modules`).then(({ data }) => {
+  //         setModules(data);
+  //         window.localStorage.setItem("modules", JSON.stringify(data));
+  //       });
+  //     } catch (err) {
+  //       setConnectionError(true);
+  //     }
+  //   })();
+  // }, [modules]);
 
-  useEffect(() => {
-    window.localStorage.setItem("modules", JSON.stringify(modules));
-  }, [modules]);
+  useEffect(async () => {
+    try {
+      const result = await axios.get(`/api/modules`);
+      setModules(result.data);
+      window.localStorage.setItem("modules", JSON.stringify(result.data));
+    } catch (err) {
+      setConnectionError(true);
+    }
+  }, []);
 
   return (
     <>

@@ -1,5 +1,15 @@
-import React from "react";
-import { Tab, Row, Col, Nav, Spinner, Tabs } from "react-bootstrap";
+import React, { useState } from "react";
+import {
+  Tab,
+  Row,
+  Col,
+  Nav,
+  Spinner,
+  Tabs,
+  Container,
+  ToggleButton,
+} from "react-bootstrap";
+import NoteView from "./NoteView";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye } from "@fortawesome/free-solid-svg-icons";
 
@@ -9,18 +19,14 @@ const TabContainerView = ({ notes }) => {
       <Row>
         {notes ? (
           <>
-            <Col sm={3}>
+            <Col lg={3}>
               <Nav variant="pills" className="flex-column">
                 {notes.notes.map((note) => (
-                  <Nav.Item key={note._id}>
-                    <Nav.Link eventKey={note._id} className="nav-link-black">
-                      {note.topic}
-                    </Nav.Link>
-                  </Nav.Item>
+                  <NoteView note={note} key={note._id} noteID={notes._id} />
                 ))}
               </Nav>
             </Col>
-            <Col sm={9}>
+            <Col lg={9}>
               <Tab.Content style={{ height: "100%" }}>
                 {notes.notes.map((note) => (
                   <Tab.Pane

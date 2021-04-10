@@ -39,6 +39,17 @@ a {
   color: white !important;
 }
 
+input[type="checkbox"] {
+  border: 0px;
+  clip: rect(0px, 0px, 0px, 0px);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0px;
+  position: absolute;
+  width: 1px;
+}
+
 .nav-link {
   color: white !important;
 }
@@ -69,24 +80,22 @@ a {
   height: inherit;
 }
 
-@media (max-width: 1024px) and (orientation: landscape) {
+@media (max-width: 576px) {
   .col-sm-9 {
-    flex: auto;
-    max-width: initial;
+    width: 75%;
+  }
+}
+
+@media (max-width: 576px) {
+  .col-sm-3 {
+    width: 25%;
   }
 }
 
 @media (max-width: 1024px) and (orientation: landscape) {
   .col-sm-3 {
     flex: auto;
-    max-width: initial;
-  }
-}
-
-@media (max-width: 1024px) and (orientation: landscape) {
-  .col-sm-3 {
-    flex: auto;
-    max-width: initial;
+    width: auto;
   }
 }
 
