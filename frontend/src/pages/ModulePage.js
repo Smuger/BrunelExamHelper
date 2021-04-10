@@ -1,20 +1,20 @@
 import React, { useEffect, useState } from "react";
 import TabContainerView from "../components/TabContainerView";
 import BreadcrumbsView from "../components/BreadcrumbsView";
-import axios from "axios";
 import { Spinner } from "react-bootstrap";
 
 const ModulePage = () => {
-  const [modules, setModules] = useState(() => {
+  const [modules] = useState(() => {
     const stickyValue = window.localStorage.getItem("modules");
     return stickyValue !== null ? JSON.parse(stickyValue) : [];
   });
-  const [path, setPath] = useState(() => {
+  const [path] = useState(() => {
     return window.location.pathname;
   });
 
-  const [connectionError, setConnectionError] = useState(false);
-  const [foundModule, setFoundModule] = useState();
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   return (
     <>

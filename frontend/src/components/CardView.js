@@ -1,12 +1,5 @@
 import React, { useEffect, useState } from "react";
-import {
-  Card,
-  Button,
-  CardDeck,
-  ListGroup,
-  ProgressBar,
-  Spinner,
-} from "react-bootstrap";
+import { Card, ListGroup, ProgressBar, Spinner } from "react-bootstrap";
 
 const CardView = ({ module }) => {
   const [daysLeft, setDaysLeft] = useState();
@@ -23,7 +16,7 @@ const CardView = ({ module }) => {
       setDaysLeft(diffDays);
     };
     CalculateDaysLeft();
-  }, []);
+  }, [module]);
 
   const day = [
     "Sunday",

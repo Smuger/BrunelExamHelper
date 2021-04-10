@@ -1,11 +1,7 @@
 import React from "react";
 import { Tab, Row, Col, Nav, Spinner, Tabs } from "react-bootstrap";
-import MyEditor from "./MyEditor";
-import TextEditor from "./TextEditor";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faEye, faEdit } from "@fortawesome/free-solid-svg-icons";
-import PostDisplay from "../utility/PostDisplay";
-import Iframe from "react-iframe";
+import { faEye } from "@fortawesome/free-solid-svg-icons";
 
 const TabContainerView = ({ notes }) => {
   return (
@@ -39,6 +35,7 @@ const TabContainerView = ({ notes }) => {
                         className="nav-link-blue"
                       >
                         <iframe
+                          title={note._id}
                           style={{ width: "100%", height: "100vh" }}
                           src={note.embedded}
                         ></iframe>

@@ -1,5 +1,5 @@
 import React from "react";
-import { Navbar, Nav, NavDropdown, Image } from "react-bootstrap";
+import { Navbar, Nav } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import logo from "./logo_white.png";
 
@@ -10,7 +10,11 @@ const Header = () => {
       <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
         <Link to={`/`}>
           <Navbar.Brand>
-            <img src={logo} style={{ width: "100px" }} />
+            <img
+              src={logo}
+              alt="Brunel University London Logo "
+              style={{ width: "100px" }}
+            />
           </Navbar.Brand>
         </Link>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
