@@ -24,7 +24,7 @@ const Header = () => {
               Blackboard
             </Nav.Link>
             <Nav.Link
-              href="https://www.brunel.ac.uk/life/library"
+              href="https://brunel.summon.serialssolutions.com/"
               target="_blank"
             >
               Library
