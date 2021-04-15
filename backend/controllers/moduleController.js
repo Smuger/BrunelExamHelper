@@ -13,7 +13,6 @@ const getModules = asyncHandler(async (req, res) => {
 // @route GET /api/modules/id
 // @access Public
 const getModuleById = asyncHandler(async (req, res) => {
-
   const module = await Module.findById(req.params.id);
   if (module) {
     res.json(module);
@@ -27,14 +26,20 @@ const getModuleById = asyncHandler(async (req, res) => {
 // @route   POST /api/modules/:id/notes
 // @access  Private
 const postNewNote = asyncHandler(async (req, res) => {
-  const { topic, content } = req.body;
+  const { topic, docEdit, docEmbedded } = req.body;
+  console.log(req.body);
   const module = await Module.findById(req.params.id);
+
+  console.log(topic);
+  console.log(docEdit);
+  console.log(docEmbedded);
 
   // Check is service was found
   if (module) {
     const newNote = {
       topic: topic,
-      content: content,
+      url: docEdit,
+      embedded: docEmbedded,
     };
 
     module.notes.unshift(newNote);

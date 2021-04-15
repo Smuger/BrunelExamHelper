@@ -1,5 +1,6 @@
 import HomePage from "./pages/HomePage";
 import ModulePage from "./pages/ModulePage";
+import CreateModulePage from "./pages/CreateModulePage";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
 import { Container } from "react-bootstrap";
@@ -13,7 +14,8 @@ function App() {
       <main className="py-3">
         <Container>
           <Route path="/" component={HomePage} exact />
-          <Route path="/module" component={ModulePage} />
+          <Route path="/module/:id" component={ModulePage} exact />
+          <Route path="/create/:id" component={CreateModulePage} exact />
         </Container>
       </main>
       <Footer />
