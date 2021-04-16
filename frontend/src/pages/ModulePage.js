@@ -30,7 +30,7 @@ const ModulePage = () => {
       <BreadcrumbsView />
       {modules && path ? (
         <TabContainerView
-          notes={modules.find(
+          module={modules.find(
             (module) => module.name === path.split("/")[2].replace(/-/g, " ")
           )}
         />

@@ -27,12 +27,7 @@ const getModuleById = asyncHandler(async (req, res) => {
 // @access  Private
 const postNewNote = asyncHandler(async (req, res) => {
   const { topic, docEdit, docEmbedded } = req.body;
-  console.log(req.body);
   const module = await Module.findById(req.params.id);
-
-  console.log(topic);
-  console.log(docEdit);
-  console.log(docEmbedded);
 
   // Check is service was found
   if (module) {
@@ -40,6 +35,7 @@ const postNewNote = asyncHandler(async (req, res) => {
       topic: topic,
       url: docEdit,
       embedded: docEmbedded,
+      done: false,
     };
 
     module.notes.unshift(newNote);

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import BreadcrumbsView from "../components/BreadcrumbsView";
 import { Alert, Form, Col, Row, Button } from "react-bootstrap";
 import axios from "axios";
+import { useHistory } from "react-router-dom";
 
 const CreateModulePage = () => {
   const [module, setModule] = useState(() => {
@@ -13,6 +14,7 @@ const CreateModulePage = () => {
   const [topic, setTopic] = useState("");
   const [docEdit, setDocEdit] = useState("");
   const [docEmbedded, setDocEmbedded] = useState("");
+  const history = useHistory();
 
   useEffect(async () => {
     try {
@@ -28,9 +30,6 @@ const CreateModulePage = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(topic);
-    console.log(docEdit);
-    console.log(docEmbedded);
 
     try {
       const config = {
@@ -50,6 +49,9 @@ const CreateModulePage = () => {
         newNote,
         config
       );
+
+      let path = `/`;
+      history.push(path);
     } catch (err) {
       setConnectionError(true);
     }

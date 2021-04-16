@@ -51,8 +51,7 @@ const NoteView = ({ note, noteID }) => {
     <Nav.Item key={note._id}>
       <Container>
         <Row>
-          <Col sm={9} style={{ paddingLeft: "0px" }}>
-            {" "}
+          <Col sm={9}>
             <Nav.Link eventKey={note._id} className="nav-link-black">
               {note.topic}
             </Nav.Link>

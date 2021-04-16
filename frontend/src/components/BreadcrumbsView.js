@@ -11,7 +11,7 @@ const BreadcrumbsView = () => {
         Home
       </Breadcrumb.Item>
       <Breadcrumb.Item linkAs={Link} linkProps={{ to: { pathname } }}>
-        {pathname.split("/")[2]}
+        {pathname.split("/")[2].replace(/-/g, " ")}
       </Breadcrumb.Item>
     </Breadcrumb>
   );
