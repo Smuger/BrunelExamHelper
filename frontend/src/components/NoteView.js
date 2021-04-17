@@ -14,9 +14,12 @@ import { faEye } from "@fortawesome/free-solid-svg-icons";
 import Switch from "react-switch";
 import axios from "axios";
 
-const NoteView = ({ note, noteID }) => {
+const NoteView = ({ note, moduleId }) => {
   const [checked, setChecked] = useState(() => {
     return note.done;
+  });
+  const [urlModuleId, setUrlModuleId] = useState(() => {
+    return moduleId;
   });
 
   const [connectionError, setConnectionError] = useState(false);
@@ -37,7 +40,7 @@ const NoteView = ({ note, noteID }) => {
     (async () => {
       try {
         await axios.post(
-          `/api/modules/${noteID}/notes/update`,
+          `/api/modules/${urlModuleId}/notes/update`,
           noteUpdateObject,
           config
         );

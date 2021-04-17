@@ -30,13 +30,11 @@ const TabContainerView = ({ module }) => {
       });
     }
   });
-
-  // const [pastPapers, setPastPapers] = useState(() => {
-  //   return notes.splice(
-  //     notes.filter((singleNote) => singleNote.topic === "Past Papers"),
-  //     1
-  //   )[0];
-  // });
+  const [urlModuleId, setUrlModuleId] = useState(() => {
+    if (module) {
+      return module._id;
+    }
+  });
 
   return (
     <>
@@ -44,13 +42,21 @@ const TabContainerView = ({ module }) => {
         <Tab.Container id="left-tabs-example" defaultActiveKey={notes[0]._id}>
           <Row>
             <Col lg={3}>
-              {console.log(pastPapers)}
               <Nav variant="pills" className="flex-column">
                 {pastPapers && (
-                  <NoteView note={pastPapers} noteID={notes._id} />
+                  <>
+                    <NoteView note={pastPapers} moduleId={urlModuleId} />
+                    <div
+                      style={{
+                        borderBottom: "1px solid #eee",
+                        marginBottom: "12px",
+                        marginTop: "12px",
+                      }}
+                    ></div>
+                  </>
                 )}
                 {notes.map((note) => (
-                  <NoteView note={note} key={note._id} noteID={notes._id} />
+                  <NoteView note={note} key={note._id} moduleId={urlModuleId} />
                 ))}
               </Nav>
             </Col>
