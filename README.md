@@ -1,7 +1,7 @@
 # BrunelExamHelper
-### Simple MERN stack application that allows for progress monitoring and viewing Google Doc documents in read only mode.
+#### Simple MERN stack application that allows for progress monitoring and viewing Google Doc documents in read only mode.
 
-DEMO:
+### DEMO:
 
 https://brunel-exams.herokuapp.com
 
