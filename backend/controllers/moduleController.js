@@ -72,7 +72,7 @@ const postNoteUpdate = asyncHandler(async (req, res) => {
       console.error("Module failed while saving: " + error);
     }
 
-    res.status(201).json({ message: "Module updated" });
+    res.status(200).json({ message: "Module updated" });
   } else {
     res.status(404);
     throw new Error("Module not found");

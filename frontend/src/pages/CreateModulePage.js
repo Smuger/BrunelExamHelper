@@ -1,32 +1,34 @@
-import React, { useEffect, useState } from "react";
-import BreadcrumbsView from "../components/BreadcrumbsView";
-import { Alert, Form, Col, Row, Button } from "react-bootstrap";
-import axios from "axios";
-import { useHistory } from "react-router-dom";
+import React, { useEffect, useState } from 'react';
+import { Alert, Form, Col, Row, Button } from 'react-bootstrap';
+import axios from 'axios';
+import { useHistory } from 'react-router-dom';
 
 const CreateModulePage = () => {
-  const [module, setModule] = useState(() => {
-    return window.location.pathname.split("/")[2].replace(/-/g, " ");
+  const [module] = useState(() => {
+    return window.location.pathname.split('/')[2].replace(/-/g, ' ');
   });
-  const [moduleID, setModuleID] = useState("");
+  const [moduleID, setModuleID] = useState('');
   const [connectionError, setConnectionError] = useState(false);
 
-  const [topic, setTopic] = useState("");
-  const [docEdit, setDocEdit] = useState("");
-  const [docEmbedded, setDocEmbedded] = useState("");
+  const [topic, setTopic] = useState('');
+  const [docEdit, setDocEdit] = useState('');
+  const [docEmbedded, setDocEmbedded] = useState('');
   const history = useHistory();
 
-  useEffect(async () => {
-    try {
-      setModuleID(
-        JSON.parse(window.localStorage.getItem("modules")).filter(
-          (mod) => mod.name === module
-        )[0]._id
-      );
-    } catch (err) {
-      setConnectionError(true);
-    }
-  }, []);
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        setModuleID(
+          JSON.parse(window.localStorage.getItem('modules')).filter(
+            (mod) => mod.name === module
+          )[0]._id
+        );
+      } catch (err) {
+        setConnectionError(true);
+      }
+    };
+    fetchData();
+  }, [module]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -34,7 +36,7 @@ const CreateModulePage = () => {
     try {
       const config = {
         headers: {
-          "Content-Type": "application/json",
+          'Content-Type': 'application/json',
         },
       };
 
@@ -44,7 +46,7 @@ const CreateModulePage = () => {
         docEmbedded,
       };
 
-      const { data } = await axios.post(
+      await axios.post(
         `/api/modules/${moduleID}/notes`,
         newNote,
         config
@@ -61,7 +63,7 @@ const CreateModulePage = () => {
     <Row>
       <Col md={{ span: 6, offset: 3 }}>
         {connectionError ? (
-          <Alert variant={"danger"}>
+          <Alert variant={'danger'}>
             Unable to connect to the server. Please check your internet
             connection.
           </Alert>

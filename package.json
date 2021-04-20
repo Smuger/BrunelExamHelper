@@ -1,5 +1,26 @@
 {
   "name": "brunel-exam",
+  "jest": {
+    "collectCoverageFrom": [
+      "src/**/*.{js,jsx,ts,tsx}",
+      "!<rootDir>/node_modules/",
+      "!<rootDir>/frontend/src/"
+    ],
+    "coverageThreshold": {
+      "global": {
+        "branches": 90,
+        "functions": 90,
+        "lines": 90,
+        "statements": 90
+      }
+    },
+    "coverageReporters": [
+      "text"
+    ],
+    "snapshotSerializers": [
+      "my-serializer-module"
+    ]
+  },
   "version": "1.0.0",
   "description": "Simple app with notes for my exam",
   "main": "server.js",
@@ -20,10 +41,26 @@
     "env": "0.0.2",
     "express": "^4.17.1",
     "express-async-handler": "^1.1.4",
+    "jest-serializer": "^26.6.2",
     "mongoose": "^5.12.3",
+    "msw": "^0.28.1",
     "nodemon": "^2.0.7",
     "path": "^0.12.7",
     "qs": "^6.10.1",
+    "react-scripts": "^4.0.3",
     "tough-cookie": "^4.0.0"
+  },
+  "devDependencies": {
+    "@testing-library/jest-dom": "^5.11.10",
+    "@testing-library/react": "^11.2.6",
+    "@testing-library/react-hooks": "^5.1.1",
+    "enzyme": "^3.11.0",
+    "enzyme-adapter-react-16": "^1.15.6",
+    "eslint": "^7.24.0",
+    "eslint-config-airbnb": "^18.2.1",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-jsx-a11y": "^6.4.1",
+    "eslint-plugin-react": "^7.23.2",
+    "eslint-plugin-react-hooks": "^4.2.0"
   }
 }
