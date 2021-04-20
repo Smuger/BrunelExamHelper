@@ -7,3 +7,6 @@ https://brunel-exams.herokuapp.com
 
 
 ![Dashboard of the project](Dashboard.PNG)
+
+
+![Dashboard of the project](View.PNG)
