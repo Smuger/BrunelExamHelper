@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from 'react';
 import {
   Tab,
   Row,
@@ -8,16 +8,17 @@ import {
   Tabs,
   Container,
   ToggleButton,
-} from "react-bootstrap";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faEye } from "@fortawesome/free-solid-svg-icons";
-import Switch from "react-switch";
-import axios from "axios";
+} from 'react-bootstrap';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEye } from '@fortawesome/free-solid-svg-icons';
+import Switch from 'react-switch';
+import axios from 'axios';
 
 const NoteView = ({ note, moduleId }) => {
   const [checked, setChecked] = useState(() => {
     return note.done;
   });
+
   const [urlModuleId, setUrlModuleId] = useState(() => {
     return moduleId;
   });
@@ -26,7 +27,7 @@ const NoteView = ({ note, moduleId }) => {
 
   const config = {
     headers: {
-      "Content-Type": "application/json",
+      'Content-Type': 'application/json',
     },
   };
 
@@ -62,17 +63,17 @@ const NoteView = ({ note, moduleId }) => {
           <Col
             sm={3}
             style={{
-              display: "flex",
-              alignItems: "center",
-              paddingLeft: "0px",
-              paddingRight: "0px",
+              display: 'flex',
+              alignItems: 'center',
+              paddingLeft: '0px',
+              paddingRight: '0px',
             }}
           >
             <Switch
               className="mx-auto"
               onChange={doneButtonChangeHandler}
               checked={checked}
-              style={{ paddingLeft: "15px", paddingRight: "12px" }}
+              style={{ paddingLeft: '15px', paddingRight: '12px' }}
             />
           </Col>
         </Row>

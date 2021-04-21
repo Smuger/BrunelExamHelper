@@ -32,7 +32,7 @@ const ModulePage = () => {
 
   return (
     <>
-      <BreadcrumbsView />
+      <BreadcrumbsView pathname={window.location.pathname}/>
       {modules && path ? (
         <TabContainerView
           module={modules.find(

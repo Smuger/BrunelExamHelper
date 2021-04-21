@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { Card, ListGroup, ProgressBar, Spinner } from "react-bootstrap";
+import React, { useEffect, useState } from 'react';
+import { Card, ListGroup, ProgressBar, Spinner } from 'react-bootstrap';
 
 const CardView = ({ module }) => {
   const [daysLeft, setDaysLeft] = useState();
@@ -27,13 +27,13 @@ const CardView = ({ module }) => {
   }, [module]);
 
   const day = [
-    "Sunday",
-    "Monday",
-    "Tuesday",
-    "Wednesday",
-    "Thursday",
-    "Friday",
-    "Saturday",
+    'Sunday',
+    'Monday',
+    'Tuesday',
+    'Wednesday',
+    'Thursday',
+    'Friday',
+    'Saturday',
   ];
   return (
     <div>
@@ -43,41 +43,41 @@ const CardView = ({ module }) => {
 
           <ListGroup variant="flush">
             <ListGroup.Item>
-              Date:{" "}
-              <p style={{ fontWeight: "bold" }}>
-                {day[new Date(module.date).getDay()]}{" "}
+              Date:{' '}
+              <p style={{ fontWeight: 'bold' }}>
+                {day[new Date(module.date).getDay()]}{' '}
                 {new Date(module.date).getDate()}
-                {"/"}
+                {'/'}
                 {new Date(module.date).getMonth() + 1}
-                {"/"}
+                {'/'}
                 {new Date(module.date).getUTCFullYear()}
               </p>
             </ListGroup.Item>
             <ListGroup.Item>
-              Time: <p style={{ fontWeight: "bold" }}>{module.time}</p>
+              Time: <p style={{ fontWeight: 'bold' }}>{module.time}</p>
             </ListGroup.Item>
             <ListGroup.Item>
-              Exam length:{" "}
-              <p style={{ fontWeight: "bold" }}>{module.examlenght}</p>
+              Exam length:{' '}
+              <p style={{ fontWeight: 'bold' }}>{module.examlenght}</p>
             </ListGroup.Item>
-            <ListGroup.Item style={{ textAlign: "center" }}>
+            <ListGroup.Item style={{ textAlign: 'center' }}>
               Days left: <ProgressBar animated now={100 - daysLeft} />
               {daysLeft ? (
-                <p style={{ fontWeight: "bold" }}>{daysLeft}</p>
+                <p style={{ fontWeight: 'bold' }}>{daysLeft}</p>
               ) : (
                 <Spinner
                   animation="border"
                   style={{
-                    margin: "auto",
-                    display: "flex",
-                    width: "1rem",
-                    height: "1rem",
+                    margin: 'auto',
+                    display: 'flex',
+                    width: '1rem',
+                    height: '1rem',
                   }}
                 />
               )}
             </ListGroup.Item>
-            <ListGroup.Item style={{ textAlign: "center" }}>
-              Topics to revise left:{" "}
+            <ListGroup.Item style={{ textAlign: 'center' }}>
+              Topics to revise left:{' '}
               <ProgressBar
                 variant="success"
                 animated
@@ -85,15 +85,15 @@ const CardView = ({ module }) => {
                 max={numberOfNotes}
               />
               {daysLeft ? (
-                <p style={{ fontWeight: "bold" }}>{numberOfNotes - noteDone}</p>
+                <p style={{ fontWeight: 'bold' }}>{numberOfNotes - noteDone}</p>
               ) : (
                 <Spinner
                   animation="border"
                   style={{
-                    margin: "auto",
-                    display: "flex",
-                    width: "1rem",
-                    height: "1rem",
+                    margin: 'auto',
+                    display: 'flex',
+                    width: '1rem',
+                    height: '1rem',
                   }}
                 />
               )}

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 import {
   Tab,
   Row,
@@ -8,25 +8,26 @@ import {
   Tabs,
   Container,
   ToggleButton,
-} from "react-bootstrap";
-import NoteView from "./NoteView";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faEye } from "@fortawesome/free-solid-svg-icons";
+} from 'react-bootstrap';
+import NoteView from './NoteView';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEye } from '@fortawesome/free-solid-svg-icons';
 
 const TabContainerView = ({ module }) => {
   const [pastPapers, setPastPapers] = useState({});
+
   const [notes, setNotes] = useState(() => {
     if (module) {
       var notesWithPastPapers = module.notes;
 
       setPastPapers(
         notesWithPastPapers.filter(
-          (singleNote) => singleNote.topic === "Past Papers"
+          (singleNote) => singleNote.topic === 'Past Papers'
         )[0]
       );
 
       return notesWithPastPapers.filter((note) => {
-        return note.topic !== "Past Papers";
+        return note.topic !== 'Past Papers';
       });
     }
   });
@@ -48,9 +49,9 @@ const TabContainerView = ({ module }) => {
                     <NoteView note={pastPapers} moduleId={urlModuleId} />
                     <div
                       style={{
-                        borderBottom: "1px solid #eee",
-                        marginBottom: "12px",
-                        marginTop: "12px",
+                        borderBottom: '1px solid #eee',
+                        marginBottom: '12px',
+                        marginTop: '12px',
                       }}
                     ></div>
                   </>
@@ -61,11 +62,11 @@ const TabContainerView = ({ module }) => {
               </Nav>
             </Col>
             <Col lg={9}>
-              <Tab.Content style={{ height: "100%" }}>
+              <Tab.Content style={{ height: '100%' }}>
                 {pastPapers && (
                   <Tab.Pane
                     eventKey={pastPapers._id}
-                    style={{ height: "inherit" }}
+                    style={{ height: 'inherit' }}
                   >
                     <Tabs defaultActiveKey="view" id="uncontrolled-tab-example">
                       <Tab
@@ -75,7 +76,7 @@ const TabContainerView = ({ module }) => {
                       >
                         <iframe
                           title={pastPapers._id}
-                          style={{ width: "100%", height: "100vh" }}
+                          style={{ width: '100%', height: '100vh' }}
                           src={pastPapers.embedded}
                         ></iframe>
                       </Tab>
@@ -86,7 +87,7 @@ const TabContainerView = ({ module }) => {
                   <Tab.Pane
                     eventKey={note._id}
                     key={note._id}
-                    style={{ height: "inherit" }}
+                    style={{ height: 'inherit' }}
                   >
                     <Tabs defaultActiveKey="view" id="uncontrolled-tab-example">
                       <Tab
@@ -96,7 +97,7 @@ const TabContainerView = ({ module }) => {
                       >
                         <iframe
                           title={note._id}
-                          style={{ width: "100%", height: "100vh" }}
+                          style={{ width: '100%', height: '100vh' }}
                           src={note.embedded}
                         ></iframe>
                       </Tab>
