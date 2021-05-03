@@ -11,7 +11,7 @@ import {
 } from 'react-bootstrap';
 import NoteView from './NoteView';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEye } from '@fortawesome/free-solid-svg-icons';
+import { faEye, faVideo } from '@fortawesome/free-solid-svg-icons';
 
 const TabContainerView = ({ module }) => {
   const [pastPapers, setPastPapers] = useState({});
@@ -80,6 +80,27 @@ const TabContainerView = ({ module }) => {
                           src={pastPapers.embedded}
                         ></iframe>
                       </Tab>
+                      {pastPapers.video ? (
+                        <Tab
+                          eventKey="video"
+                          title={<FontAwesomeIcon icon={faVideo} />}
+                          className="nav-link-blue"
+                        >
+                          <div className="video-responsive">
+                            <iframe
+                              width="560"
+                              height="315"
+                              src={pastPapers.video}
+                              title="YouTube video player"
+                              frameborder="0"
+                              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                              allowfullscreen
+                            ></iframe>
+                          </div>
+                        </Tab>
+                      ) : (
+                        <></>
+                      )}
                     </Tabs>
                   </Tab.Pane>
                 )}
@@ -101,6 +122,27 @@ const TabContainerView = ({ module }) => {
                           src={note.embedded}
                         ></iframe>
                       </Tab>
+                      {note.video ? (
+                        <Tab
+                          eventKey="video"
+                          title={<FontAwesomeIcon icon={faVideo} />}
+                          className="nav-link-blue"
+                        >
+                          <div className="video-responsive">
+                            <iframe
+                              width="560"
+                              height="315"
+                              src={note.video}
+                              title="YouTube video player"
+                              frameborder="0"
+                              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                              allowfullscreen
+                            ></iframe>
+                          </div>
+                        </Tab>
+                      ) : (
+                        <></>
+                      )}
                     </Tabs>
                   </Tab.Pane>
                 ))}

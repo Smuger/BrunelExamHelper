@@ -6,6 +6,7 @@ const noteSchema = mongoose.Schema(
     url: { type: String },
     embedded: { type: String },
     done: { type: Boolean },
+    video: { type: String },
   },
   {
     timestamps: true,

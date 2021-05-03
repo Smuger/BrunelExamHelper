@@ -13,6 +13,7 @@ const CreateModulePage = () => {
   const [topic, setTopic] = useState('');
   const [docEdit, setDocEdit] = useState('');
   const [docEmbedded, setDocEmbedded] = useState('');
+  const [video, setVideo] = useState('');
   const history = useHistory();
 
   useEffect(() => {
@@ -44,13 +45,10 @@ const CreateModulePage = () => {
         topic,
         docEdit,
         docEmbedded,
+        video,
       };
 
-      await axios.post(
-        `/api/modules/${moduleID}/notes`,
-        newNote,
-        config
-      );
+      await axios.post(`/api/modules/${moduleID}/notes`, newNote, config);
 
       let path = `/`;
       history.push(path);
@@ -103,6 +101,14 @@ const CreateModulePage = () => {
               type="text"
               placeholder="Embedded"
               onChange={(e) => setDocEmbedded(e.target.value)}
+            />
+          </Form.Group>
+          <Form.Group controlId="formGroupPassword">
+            <Form.Label>Video URL</Form.Label>
+            <Form.Control
+              type="text"
+              placeholder="Embedded"
+              onChange={(e) => setVideo(e.target.value)}
             />
           </Form.Group>
           <Button variant="primary" type="submit">

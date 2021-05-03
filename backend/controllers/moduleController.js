@@ -26,7 +26,7 @@ const getModuleById = asyncHandler(async (req, res) => {
 // @route   POST /api/modules/:id/notes
 // @access  Private
 const postNewNote = asyncHandler(async (req, res) => {
-  const { topic, docEdit, docEmbedded } = req.body;
+  const { topic, docEdit, docEmbedded, video } = req.body;
   const module = await Module.findById(req.params.id);
 
   // Check is service was found
@@ -36,9 +36,28 @@ const postNewNote = asyncHandler(async (req, res) => {
       url: docEdit,
       embedded: docEmbedded,
       done: false,
+      video: video,
     };
 
-    module.notes.unshift(newNote);
+    let notePositionIfFound = module.notes.findIndex(
+      (note) => note.topic === topic
+    );
+
+    // check if this note already exist
+    if (notePositionIfFound !== -1) {
+      // update already existing object with new data
+      module.notes[notePositionIfFound] = Object.assign(
+        module.notes[notePositionIfFound],
+        Object.keys(newNote).reduce((accumulator, key) => {
+          if (newNote[key] !== "") {
+            accumulator[key] = newNote[key];
+          }
+          return accumulator;
+        }, {})
+      );
+    } else {
+      module.notes.unshift(newNote);
+    }
 
     try {
       await module.save();
