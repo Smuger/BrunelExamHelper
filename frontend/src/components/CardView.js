@@ -61,7 +61,7 @@ const CardView = ({ module }) => {
               <p style={{ fontWeight: 'bold' }}>{module.examlenght}</p>
             </ListGroup.Item>
             <ListGroup.Item style={{ textAlign: 'center' }}>
-              Days left: <ProgressBar animated now={100 - daysLeft} />
+              Days left: <ProgressBar animated now={100 - daysLeft} max={100} />
               {daysLeft ? (
                 <p style={{ fontWeight: 'bold' }}>{daysLeft}</p>
               ) : (
