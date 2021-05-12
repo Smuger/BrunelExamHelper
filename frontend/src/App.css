@@ -28,6 +28,10 @@
   color: white;
 }
 
+.inactive {
+  filter: grayscale(1) !important;
+}
+
 .App-link {
   color: #61dafb;
 }

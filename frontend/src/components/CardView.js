@@ -5,6 +5,7 @@ const CardView = ({ module }) => {
   const [daysLeft, setDaysLeft] = useState();
   const [noteDone, setNoteDone] = useState();
   const [numberOfNotes, setNumberOfNotes] = useState();
+  const [cardIsActive, setCardIsActive] = useState(true);
 
   useEffect(() => {
     (() => {
@@ -13,9 +14,13 @@ const CardView = ({ module }) => {
       const examDate = new Date(module.date);
       const currentDate = new Date();
 
-      const diffDays = Math.round(Math.abs((examDate - currentDate) / oneDay));
+      const diffDays =
+        Math.abs((examDate - currentDate) / oneDay) > 1
+          ? Math.round(Math.abs((examDate - currentDate) / oneDay))
+          : 0;
 
       setDaysLeft(diffDays);
+      diffDays > 0 ? setCardIsActive(true) : setCardIsActive(false);
     })();
 
     setNoteDone(
@@ -37,7 +42,7 @@ const CardView = ({ module }) => {
   ];
   return (
     <div>
-      <Card>
+      <Card className={cardIsActive ? '' : 'inactive'}>
         <Card.Body>
           <Card.Title>{module.name}</Card.Title>
 
@@ -61,8 +66,13 @@ const CardView = ({ module }) => {
               <p style={{ fontWeight: 'bold' }}>{module.examlenght}</p>
             </ListGroup.Item>
             <ListGroup.Item style={{ textAlign: 'center' }}>
-              Days left: <ProgressBar animated now={100 - daysLeft} max={100} />
-              {daysLeft ? (
+              Days left:{' '}
+              {daysLeft > 0 ? (
+                <ProgressBar animated now={100 - daysLeft} max={100} />
+              ) : (
+                <ProgressBar now={100 - daysLeft} max={100} />
+              )}
+              {daysLeft >= 0 ? (
                 <p style={{ fontWeight: 'bold' }}>{daysLeft}</p>
               ) : (
                 <Spinner
@@ -78,13 +88,21 @@ const CardView = ({ module }) => {
             </ListGroup.Item>
             <ListGroup.Item style={{ textAlign: 'center' }}>
               Topics to revise left:{' '}
-              <ProgressBar
-                variant="success"
-                animated
-                now={noteDone}
-                max={numberOfNotes}
-              />
-              {daysLeft ? (
+              {daysLeft > 0 ? (
+                <ProgressBar
+                  variant="success"
+                  animated
+                  now={noteDone}
+                  max={numberOfNotes}
+                />
+              ) : (
+                <ProgressBar
+                  variant="success"
+                  now={noteDone}
+                  max={numberOfNotes}
+                />
+              )}
+              {daysLeft >= 0 ? (
                 <p style={{ fontWeight: 'bold' }}>{numberOfNotes - noteDone}</p>
               ) : (
                 <Spinner
