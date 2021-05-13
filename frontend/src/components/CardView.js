@@ -16,11 +16,13 @@ const CardView = ({ module }) => {
 
       const diffDays =
         Math.abs((examDate - currentDate) / oneDay) > 1
-          ? Math.round(Math.abs((examDate - currentDate) / oneDay))
+          ? Math.round((examDate - currentDate) / oneDay)
           : 0;
 
       setDaysLeft(diffDays);
-      diffDays > 0 ? setCardIsActive(true) : setCardIsActive(false);
+      (examDate - currentDate) / oneDay > 0
+        ? setCardIsActive(true)
+        : setCardIsActive(false);
     })();
 
     setNoteDone(
@@ -45,7 +47,7 @@ const CardView = ({ module }) => {
       <Card className={cardIsActive ? '' : 'inactive'}>
         <Card.Body>
           <Card.Title>{module.name}</Card.Title>
-
+          {console.log(daysLeft)}
           <ListGroup variant="flush">
             <ListGroup.Item>
               Date:{' '}
@@ -75,15 +77,7 @@ const CardView = ({ module }) => {
               {daysLeft >= 0 ? (
                 <p style={{ fontWeight: 'bold' }}>{daysLeft}</p>
               ) : (
-                <Spinner
-                  animation="border"
-                  style={{
-                    margin: 'auto',
-                    display: 'flex',
-                    width: '1rem',
-                    height: '1rem',
-                  }}
-                />
+                <p style={{ fontWeight: 'bold' }}>0</p>
               )}
             </ListGroup.Item>
             <ListGroup.Item style={{ textAlign: 'center' }}>
@@ -105,15 +99,7 @@ const CardView = ({ module }) => {
               {daysLeft >= 0 ? (
                 <p style={{ fontWeight: 'bold' }}>{numberOfNotes - noteDone}</p>
               ) : (
-                <Spinner
-                  animation="border"
-                  style={{
-                    margin: 'auto',
-                    display: 'flex',
-                    width: '1rem',
-                    height: '1rem',
-                  }}
-                />
+                <p style={{ fontWeight: 'bold' }}>0</p>
               )}
             </ListGroup.Item>
           </ListGroup>
