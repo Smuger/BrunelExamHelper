@@ -68,7 +68,7 @@ const CardView = ({ module }) => {
             </ListGroup.Item>
             <ListGroup.Item style={{ textAlign: 'center' }}>
               Days left:{' '}
-              {daysLeft > 0 ? (
+              {daysLeft > -1 ? (
                 <ProgressBar animated now={100 - daysLeft} max={100} />
               ) : (
                 <ProgressBar now={100 - daysLeft} max={100} />
@@ -81,7 +81,7 @@ const CardView = ({ module }) => {
             </ListGroup.Item>
             <ListGroup.Item style={{ textAlign: 'center' }}>
               Topics to revise left:{' '}
-              {daysLeft > 0 ? (
+              {daysLeft > -1 ? (
                 <ProgressBar
                   variant="success"
                   animated
