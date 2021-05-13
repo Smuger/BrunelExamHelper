@@ -47,7 +47,6 @@ const CardView = ({ module }) => {
       <Card className={cardIsActive ? '' : 'inactive'}>
         <Card.Body>
           <Card.Title>{module.name}</Card.Title>
-          {console.log(daysLeft)}
           <ListGroup variant="flush">
             <ListGroup.Item>
               Date:{' '}
