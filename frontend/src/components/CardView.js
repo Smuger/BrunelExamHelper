@@ -3,6 +3,7 @@ import { Card, ListGroup, ProgressBar, Spinner } from 'react-bootstrap';
 
 const CardView = ({ module }) => {
   const [daysLeft, setDaysLeft] = useState();
+  const [maxDays, setMaxDays] = useState();
   const [noteDone, setNoteDone] = useState();
   const [numberOfNotes, setNumberOfNotes] = useState();
   const [cardIsActive, setCardIsActive] = useState(true);
@@ -11,8 +12,16 @@ const CardView = ({ module }) => {
     (() => {
       const oneDay = 24 * 60 * 60 * 1000; // hours*minutes*seconds*milliseconds
 
+      const graduationDay = new Date(2021, 5, 26);
+
       const examDate = new Date(module.date);
       const currentDate = new Date();
+
+      const diffTimeStartToEnd = Math.abs(examDate - graduationDay);
+
+      const diffDaysStartToEnd = Math.ceil(diffTimeStartToEnd / (1000 * 60 * 60 * 24));
+
+      setMaxDays(diffDaysStartToEnd)
 
       const diffDays =
         Math.abs((examDate - currentDate) / oneDay) > 1
@@ -43,8 +52,7 @@ const CardView = ({ module }) => {
     'Saturday',
   ];
   return (
-    <div>
-      <Card className={cardIsActive ? '' : 'inactive'}>
+    <Card className={cardIsActive ? '' : 'inactive'} style={{ height: '100%' }}>
         <Card.Body>
           <Card.Title>{module.name}</Card.Title>
           <ListGroup variant="flush">
@@ -69,9 +77,9 @@ const CardView = ({ module }) => {
             <ListGroup.Item style={{ textAlign: 'center' }}>
               Days left:{' '}
               {daysLeft > -1 ? (
-                <ProgressBar animated now={100 - daysLeft} max={100} />
+                <ProgressBar animated now={daysLeft} max={maxDays} />
               ) : (
-                <ProgressBar now={100 - daysLeft} max={100} />
+                <ProgressBar now={daysLeft} max={maxDays} />
               )}
               {daysLeft >= 0 ? (
                 <p style={{ fontWeight: 'bold' }}>{daysLeft}</p>
@@ -104,7 +112,6 @@ const CardView = ({ module }) => {
           </ListGroup>
         </Card.Body>
       </Card>
-    </div>
   );
 };
 
